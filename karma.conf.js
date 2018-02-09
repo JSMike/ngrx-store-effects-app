@@ -1,8 +1,27 @@
 const webpack = require('webpack');
 
 module.exports = config => {
+  var host = process.env.HOST_IP;
+  var webdriverConfig = {
+    hostname: host,
+    port: 4444
+  };
   config.set({
-    browsers: ['Chrome'],
+    customLaunchers: {
+      chrome_webdriver: {
+        browserName: 'chrome',
+        base: 'WebDriver',
+        config: webdriverConfig,
+        flags: ['--no-sandbox']
+      }
+    },
+    hostname: host,
+    port: process.env.KARMA_PORT,
+    browsers: ['chrome_webdriver'],
+    captureTimeout: 60000,
+    browserDisconnectTimeout : 10000,
+    browserDisconnectTolerance : 1,
+    browserNoActivityTimeout : 60000,
     files: ['./node_modules/es6-shim/es6-shim.min.js', 'karma.entry.js'],
     frameworks: ['jasmine'],
     mime: { 'text/x-typescript': ['ts'] },

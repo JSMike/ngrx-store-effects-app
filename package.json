@@ -5,8 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack -p",
-    "build:dev":
-      "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
+    "build:dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
     "build:production": "npm run clean && npm run build",
     "clean": "rimraf build",
     "start": "npm run build:dev",
@@ -32,10 +31,10 @@
     "jasmine-marbles": "0.2.0",
     "json-server": "0.12.0",
     "karma": "1.7.1",
-    "karma-chrome-launcher": "2.2.0",
     "karma-jasmine": "1.1.0",
     "karma-sourcemap-loader": "0.3.7",
     "karma-spec-reporter": "0.0.31",
+    "karma-webdriver-launcher": "~1.0.5",
     "karma-webpack": "2.0.4",
     "ngrx-store-freeze": "^0.2.0",
     "node-sass": "4.5.3",

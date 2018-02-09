@@ -4,6 +4,11 @@ const typescript = require('typescript');
 const { AotPlugin } = require('@ngtools/webpack');
 const jsonServer = require('json-server');
 
+const port = process.env.PORT || 3000;
+const host_ip = process.env.HOST_IP || 'localhost';
+
+console.log(`Server Address: http://${host_ip}:${port}`);
+
 const rules = [
   { test: /\.html$/, loader: 'html-loader' },
   { test: /\.scss$/, loaders: ['raw-loader', 'sass-loader'] },
@@ -92,8 +97,16 @@ module.exports = {
       modules: false,
       warnings: false,
     },
+    watchOptions: {
+      poll: true
+    },
     publicPath: '/build/',
-    port: 3000,
+    port: port,
+    host: '0.0.0.0',
+    allowedHosts: [
+      '0.0.0.0',
+      host_ip
+    ],
     setup: function(app) {
       app.use('/api', jsonServer.router('db.json'));
     },
